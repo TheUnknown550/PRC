@@ -1,5 +1,5 @@
 import random as rn
-from openpyxl import Workbook, load_workbook
+from openpyxl import Workbook
 
 
 #ใส่ชื่อคนห้องสายวิทย์   ***Edit!!***
@@ -105,6 +105,7 @@ if __name__ == "__main__":
                 rand = rn.randint(0,len(SciM4)-1)
                 ws['E'+str(i+4)].value = SciM4[rand]
                 SciM4.remove(SciM4[rand])
+                GetTwo.remove(GetTwo[num])
 
     #Art
     ws['B'+str(i+7)].value = 'Art'
