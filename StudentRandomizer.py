@@ -2,17 +2,41 @@ import random as rn
 from openpyxl import Workbook, load_workbook
 
 
-#ใส่ชื่อคนห้องสายวิทย์
+#ใส่ชื่อคนห้องสายวิทย์   ***Edit!!***
 SciM5 = ['Matt','FookFick','Hana','Able','Chris']
 SciM4 = ['Bibua','Yok','beebell','Kan','Mos','John','Sam']
 Scipair5 = []
 Scipair4 = []
 
-#ใส่ชื่อคนห้องสานศิล
+#ใส่ชื่อคนห้องสานศิล   ***Edit!!***
 ArtM4 = ['Matt','FookFick','Hana','Able','Chris']
 ArtM5 = ['Bibua','Yok','beebell','Kan','Mos','John','Sam']
 Artpair5 = []
 Artpair4 = []
+
+#คนที่ได้ 2 คน Sci   ***Edit!!***
+Get1 = 'Matt'
+Get2 = ''
+Get3 = ''
+Get4 = ''
+Get5 = ''
+
+#คู่ในสาย Art   ***Edit!!***
+Pair1 = 'Mos'
+Pairs1 = 'Yok'
+
+Pair2 = 'Sam'
+Pairs2 = 'John'
+
+Pair3 = ''
+Pairs3 = ''
+
+Pair4 = ''
+Pairs4 = ''
+
+Pair5 = ''
+Pairs5 = ''
+
 
 def Sci():
     for i in range(len(SciM5)):
@@ -23,12 +47,13 @@ def Sci():
         SciM4.remove(SciM4[rand])
 
 def Art():
-    #Remove Team
-    ArtM5.remove('Yok')
-    ArtM5.remove('John')
-    #ArtM5.remove('Yok')
-    #ArtM5.remove('Yok')
-    #ArtM5.remove('Yok')
+
+    #Remove Team   ***Edit!!(Remove Comment)***
+    ArtM5.remove(Pairs1)
+    ArtM5.remove(Pairs2)
+    #ArtM5.remove(Pair3)
+    #ArtM5.remove(Pair4)
+    #ArtM5.remove(Pair5)
 
     for i in range(len(ArtM4)):
         rand = rn.randint(0,len(ArtM5)-1)
@@ -36,8 +61,7 @@ def Art():
         Artpair5.append(ArtM5[rand])
         Artpair4.append(ArtM4[i])
         ArtM5.remove(ArtM5[rand])
-        print(Artpair5[i],'+',Artpair4[i])
-        print(ArtM5)
+
 
 if __name__ == "__main__":
     #Access Excel
@@ -56,33 +80,32 @@ if __name__ == "__main__":
         ws['A'+str(i+4)].value = Scipair5[i]
         ws['B'+str(i+4)].value = Scipair4[i]
         #Change Group Team
-        if Scipair5[i] == 'Matt':
+        if Scipair5[i] == Get1 or Scipair5[i] == Get2 or Scipair5[i] == Get3 or Scipair5[i] == Get4 or Scipair5[i] == Get5:
             rand = rn.randint(0,len(SciM4)-1)
             ws['C'+str(i+4)].value = SciM4[i]
 
     #Art
     ws['A'+str(i+7)].value = 'Art'
-    ws['A'+str(i+8)].value = "M4"
-    ws['B'+str(i+8)].value = "M5"
+    ws['A'+str(i+8)].value = "M5"
+    ws['C'+str(i+8)].value = "M4"
     for n in range(len(Artpair5)):
-        ws['B'+str(i+9+n)].value = Artpair5[n]
-        ws['A'+str(i+9+n)].value = Artpair4[n]
+        ws['A'+str(i+9+n)].value = Artpair5[n]
+        ws['C'+str(i+9+n)].value = Artpair4[n]
         
         #Change Group team
-        if Artpair5[n] == 'Mos':
-            ws['C'+str(i+9+n)].value = 'Yok'
+        if Artpair5[n] == Pair1:
+            ws['B'+str(i+9+n)].value = Pairs1
 
-        if Artpair5[n] == 'Sam':
-            ws['C'+str(i+9+n)].value = 'John'
+        if Artpair5[n] == Pair2:
+            ws['B'+str(i+9+n)].value = Pairs2
 
-        if Artpair5[n] == 'Mos':
-            ws['C'+str(i+9+n)].value = 'Yok'
+        if Artpair5[n] == Pair3:
+            ws['B'+str(i+9+n)].value = Pairs3
 
-        if Artpair5[n] == 'Mos':
-            ws['C'+str(i+9+n)].value = 'Yok'
+        if Artpair5[n] == Pair4:
+            ws['B'+str(i+9+n)].value = Pairs4
 
-        if Artpair5[n] == 'Mos':
-            ws['C'+str(i+9+n)].value = 'Yok'
+        if Artpair5[n] == Pair5:
+            ws['B'+str(i+9+n)].value = Pairs5
             
-
     wb.save('C:/Users/mattc/OneDrive/Documents/PRC/StudentPair.xlsx')
