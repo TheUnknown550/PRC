@@ -37,38 +37,24 @@ Artpair5 = []
 Artpair4 = []
 
 #คนที่ได้ 2 คน Sci   ***Edit!!***
-GetTwo = ['M5/1_37805','M5/1_38011','M5/1_45739','M5/1_37790','M5/1_37896',
-'M5/2_37838','M5/2_38059','M5/2_38088','M5/2_43248','M5/2_45720',
-'M5/3_38144','M5/3_43300','M5/3_43280','M5/3_45709','M5/3_45747',
-'M5/4_37739','M5/4_38161','M5/4_43347','M5/4_37780','M5/4_43741',
-'M5/5_37759','M5/5_37930','M5/5_40650','M5/5_43238','M5/5_45687',
-'M5/6_37942','M5/6_37999','M5/6_43246','M5/6_43306','M5/6_37903',
-'M5/7_41437','M5/7_43329','M5/7_37789','M5/7_45695','M5/7_43346'
-]
+GetTwo = ['M5/7_43346','M5/7_45748','M5/7_45681','M5/7_41430','M5/7_43895','M5/7_43322']
 
 
 #คู่ในสาย Art   ***Edit!!***
-Pair1 = 'M5/8_37765'
-Pairs1 = 'M5/8_37844'
+Pair1 = 'M5/8_37764'
+Pairs1 = 'M5/8_37765'
 
-Pair2 = 'M5/8_37945'
-Pairs2 = 'M5/8_37948'
+Pair2 = 'M5/10_37770'
+Pairs2 = 'M5/10_37771'
 
-Pair3 = 'M5/9_37856'
-Pairs3 = 'M5/9_38198'
+Pair3 = 'M5/9_37772'
+Pairs3 = 'M5/9_37809'
 
-Pair4 = 'M5/9_38988'
-Pairs4 = 'M5/9_38989'
+Pair4 = 'M5/9_37753'
+Pairs4 = 'M5/9_37754'
 
-Pair5 = 'M5/10_38153'
-Pairs5 = 'M5/10_37720'
-
-Pair6 = 'M5/10_38164'
-Pairs6 = 'M5/10_38166'
-
-Pair7 = 'M5/11_37847'
-Pairs7 = 'M5/11_38010'
-
+Pair5 = 'M5/11_37733'
+Pairs5 = 'M5/11_37749'
 
 
 def Sci():
@@ -87,70 +73,62 @@ def Art():
     ArtM5.remove(Pairs3)
     ArtM5.remove(Pairs4)
     ArtM5.remove(Pairs5)
-    ArtM5.remove(Pairs6)
-    ArtM5.remove(Pairs7)
 
-
-    for i in range(len(ArtM5)):
+    for i in range(len(ArtM4)):
         rand = rn.randint(0,len(ArtM4)-1)
 
         Artpair5.append(ArtM5[i])
         Artpair4.append(ArtM4[rand])
         ArtM4.remove(ArtM4[rand])
 
-print('Sci M5: ',len(SciM5))
-print('Sci M4: ',len(SciM4))
-print('Art M5: ',len(ArtM5))
-print('Art M4: ',len(ArtM4))
 
-#Access Excel
-wb = Workbook()
-ws = wb.active
-#Randomizer
-Sci()
-Art()
-#Sci
-ws['B2'].value = "SCI"
-ws['A3'].value = "M5"
-ws['C3'].value = "M4"
-for i in range(len(Scipair5)):
-    ws['A'+str(i+4)].value = Scipair5[i]
-    ws['C'+str(i+4)].value = Scipair4[i]
-    #Change Group Team
-    if Scipair5[i] == GetTwo[0]:
-        if len(SciM4) > 0:
+if __name__ == "__main__":
+
+    #Access Excel
+    wb = Workbook()
+    ws = wb.active
+
+    #Randomizer
+    Sci()
+    Art()
+
+    #Sci
+    ws['B2'].value = "SCI"
+    ws['A3'].value = "M5"
+    ws['C3'].value = "M4"
+    for i in range(len(Scipair5)):
+        ws['A'+str(i+4)].value = Scipair5[i]
+        ws['C'+str(i+4)].value = Scipair4[i]
+        #Change Group Team
+        if Scipair5[i] == GetTwo[0]:
             rand = rn.randint(0,len(SciM4)-1)
-        if len(SciM4) <= 0:
-            rand = 0
-        if len(SciM4) != 0:
-            #print(SciM4)
             ws['E'+str(i+4)].value = SciM4[rand]
             SciM4.remove(SciM4[rand])
             GetTwo.remove(GetTwo[0])
-#Art
-ws['B'+str(i+7)].value = 'Art'
-ws['A'+str(i+8)].value = "M5"
-ws['E'+str(i+8)].value = "M4"
-for n in range(len(Artpair5)):
-    ws['A'+str(i+9+n)].value = Artpair5[n]
-    ws['E'+str(i+9+n)].value = Artpair4[n]
-    
-    #Change Group team
-    if Artpair5[n] == Pair1:
-        ws['C'+str(i+9+n)].value = Pairs1
-    if Artpair5[n] == Pair2:
-        ws['C'+str(i+9+n)].value = Pairs2
-    if Artpair5[n] == Pair3:
-        ws['C'+str(i+9+n)].value = Pairs3
-    if Artpair5[n] == Pair4:
-        ws['C'+str(i+9+n)].value = Pairs4
-    if Artpair5[n] == Pair5:
-        ws['C'+str(i+9+n)].value = Pairs5
-    if Artpair5[n] == Pair6:
-        ws['C'+str(i+9+n)].value = Pairs6
-    if Artpair5[n] == Pair7:
-        ws['C'+str(i+9+n)].value = Pairs7
 
-print(len(ArtM4))      
-wb.save('C:/Users/mattc/OneDrive/Documents/PRC/StudentPair.xlsx')
-print('Done!')
+    #Art
+    ws['B'+str(i+7)].value = 'Art'
+    ws['A'+str(i+8)].value = "M5"
+    ws['E'+str(i+8)].value = "M4"
+    for n in range(len(Artpair5)):
+        ws['A'+str(i+9+n)].value = Artpair5[n]
+        ws['E'+str(i+9+n)].value = Artpair4[n]
+        
+        #Change Group team
+        if Artpair5[n] == Pair1:
+            ws['C'+str(i+9+n)].value = Pairs1
+
+        if Artpair5[n] == Pair2:
+            ws['C'+str(i+9+n)].value = Pairs2
+
+        if Artpair5[n] == Pair3:
+            ws['C'+str(i+9+n)].value = Pairs3
+
+        if Artpair5[n] == Pair4:
+            ws['C'+str(i+9+n)].value = Pairs4
+
+        if Artpair5[n] == Pair5:
+            ws['C'+str(i+9+n)].value = Pairs5
+            
+    wb.save('C:/Users/mattc/OneDrive/Documents/PRC/StudentPair.xlsx')
+    print('Done!')
