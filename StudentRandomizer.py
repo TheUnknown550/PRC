@@ -98,10 +98,6 @@ def Art():
         Artpair4.append(ArtM4[rand])
         ArtM4.remove(ArtM4[rand])
 
-print('Sci M5: ',len(SciM5))
-print('Sci M4: ',len(SciM4))
-print('Art M5: ',len(ArtM5))
-print('Art M4: ',len(ArtM4))
 
 #Access Excel
 wb = Workbook()
@@ -150,7 +146,6 @@ for n in range(len(Artpair5)):
         ws['C'+str(i+9+n)].value = Pairs6
     if Artpair5[n] == Pair7:
         ws['C'+str(i+9+n)].value = Pairs7
-
-print(len(ArtM4))      
+    
 wb.save('C:/Users/mattc/OneDrive/Documents/PRC/StudentPair.xlsx')
 print('Done!')
